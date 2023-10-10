@@ -15,10 +15,10 @@ let gameOver = true;
 
 // document.addEventListener("click", () => jump());
 document.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-      jump();
-    }
-  });
+  if (event.code === "Space") {
+    jump();
+  }
+});
 
 setInterval(function () {
   Main();
@@ -34,14 +34,14 @@ function Main() {
 }
 
 function jump() {
-    if (gameOver === true) {
-        StartGame();
-    }
-    if (isJumping == false) {
-        isJumping = true;
-        dino?.classList.add("jump");
-        setTimeout(RemoveJump, 500);
-    }
+  if (gameOver === true) {
+    StartGame();
+  }
+  if (isJumping == false) {
+    isJumping = true;
+    dino?.classList.add("jump");
+    setTimeout(RemoveJump, 500);
+  }
 }
 
 function RemoveJump() {
@@ -73,19 +73,22 @@ function CheckGameOver() {
     );
 
     //detect cactus collision
-    if (dinoTop >= 150 && Math.abs(cactusleft) < 7 || (dinoTop <= 55 && Math.abs(birdleft) < 11)) {
+    if (
+      (dinoTop >= 150 && Math.abs(cactusleft) < 7) ||
+      (dinoTop <= 55 && Math.abs(birdleft) < 11)
+    ) {
       EndGame();
     }
   }
 }
 
 function EndGame() {
-    console.log("Player died!");
-    SetText(`Final Score: ${score}! Space to Play Again!`);
-    gameOver = true;
-    RemoveObstacles();
-    RemoveJump();
-  }
+  console.log("Player died!");
+  SetText(`Final Score: ${score}! Space to Play Again!`);
+  gameOver = true;
+  RemoveObstacles();
+  RemoveJump();
+}
 
 function StartGame() {
   console.log("Game started!");
