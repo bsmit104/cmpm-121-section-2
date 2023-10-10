@@ -10,7 +10,7 @@ const scoreText = document.getElementById("scoreText");
 let score = 0;
 SetText("space to start!");
 
-var isJumping = false;
+let isJumping = false;
 let gameOver = true;
 
 // document.addEventListener("click", () => jump());
@@ -31,6 +31,14 @@ function Main() {
 
     CheckGameOver();
   }
+}
+
+function StartGame() {
+  console.log("Game started!");
+  gameOver = false;
+  score = 0;
+  cactus?.classList.add("cactusMove");
+  bird?.classList.add("birdMove");
 }
 
 function jump() {
@@ -63,19 +71,19 @@ function CheckGameOver() {
     );
 
     //get cactus position
-    let cactusleft = parseInt(
+    let cactusLeft = parseInt(
       window.getComputedStyle(cactus).getPropertyValue("left"),
     );
 
     //get bird position
-    let birdleft = parseInt(
+    let birdLeft = parseInt(
       window.getComputedStyle(bird).getPropertyValue("left"),
     );
 
-    //detect cactus collision
+    //detect collision
     if (
-      (dinoTop >= 150 && Math.abs(cactusleft) < 7) ||
-      (dinoTop <= 55 && Math.abs(birdleft) < 11)
+      (dinoTop >= 150 && Math.abs(cactusLeft) < 7) ||
+      (dinoTop <= 55 && Math.abs(birdLeft) < 11)
     ) {
       EndGame();
     }
@@ -90,16 +98,10 @@ function EndGame() {
   RemoveJump();
 }
 
-function StartGame() {
-  console.log("Game started!");
-  gameOver = false;
-  score = 0;
-  cactus?.classList.add("cactusMove");
-  bird?.classList.add("birdMove");
-}
-
 function SetText(s: string) {
   if (scoreText) {
     scoreText.textContent = s;
   }
 }
+
+//shrek credit https://www.deviantart.com/gameroiren/art/Shrek-PNG-948854143
